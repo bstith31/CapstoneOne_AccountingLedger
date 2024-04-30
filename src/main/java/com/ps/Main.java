@@ -64,7 +64,7 @@ public class Main {
                     switch (businessChoice) {
                         case 1:
                             System.out.println("1");
-                            // Methods being worked on for deposits makeDeposit();
+                            makeDeposit();
                             break;
                         case 2:
                             System.out.println("2");
@@ -133,51 +133,52 @@ public class Main {
         } while (!validInput);
     }
 
-//    public static void makeDeposit() {
-//
-//        try (BufferedWriter bufreader = new BufferedWriter(new FileWriter("transactions.txt", true))) {
-//            System.out.println("============================Welcome to the Deposits Menu============================");
-//            System.out.println("      Please enter the following information to accurately log your deposit         ");
-//
-//            System.out.print("Please enter a deposit amount: $");
-//            double depositAmount = scanner.nextDouble();
-//            scanner.nextLine();
-//
-//            System.out.print("Will you be using the current date to log your transaction (Y/N): ");
-//            String depositChoice = scanner.nextLine().toUpperCase();
-//
-//            String dateTime;
-//            boolean validInput = true;
-//            if (depositChoice.equals("Y")) {
-//                // Using the current date and time
-//                LocalDateTime now = LocalDateTime.now();
-//                dateTime = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-//            } else if (depositChoice.equals("N")) {
-//                // Using the user's date and time
-//                System.out.print("Please enter the date and time (yyyy-MM-dd HH:mm:ss): ");
-//                dateTime = scanner.nextLine();
-//            } else {
-//                System.out.println("Invalid input. Please enter 'Y' or 'N'.");
-//                validInput = false;
-//                dateTime = null;
-//            }
-//
-//            if (validInput) {
-//                // Format the deposit information
-//                String formattedDeposit = String.format("%s|%s|%.2f%n", dateTime, "Deposit", depositAmount);
-//
-////                // Write the formatted deposit information to the file
-////                bufreader.write(formattedDeposit);
-////                bufreader.flush();
-//
-//                System.out.println("Your deposit has been successfully logged.");
-//            } else {
-//                makeDeposit(); // Re-prompt
-//            }
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+    public static void makeDeposit() {
+
+        try (BufferedWriter bufreader = new BufferedWriter(new FileWriter("transactions.txt", true))) {
+            System.out.println("============================Welcome to the Deposits Menu============================");
+            System.out.println("      Please enter the following information to accurately log your deposit         ");
+
+            System.out.print("Please enter a deposit amount: $");
+            double depositAmount = scanner.nextDouble();
+            scanner.nextLine();
+
+            System.out.print("Will you be using the current date to log your transaction (Y/N): ");
+            String depositChoice = scanner.nextLine().toUpperCase();
+
+            String dateTime;
+            boolean validInput = true;
+            if (depositChoice.equals("Y")) {
+                // Using the current date and time
+                LocalDateTime now = LocalDateTime.now();
+                dateTime = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+            } else if (depositChoice.equals("N")) {
+                // Using the user's date and time
+                System.out.print("Please enter the date and time (yyyy-MM-dd HH:mm:ss): ");
+                dateTime = scanner.nextLine();
+            } else {
+                System.out.println("Invalid input. Please enter 'Y' or 'N'.");
+                validInput = false;
+                dateTime = null;
+            }
+
+            if (validInput) {
+
+                // Format the deposit information
+                String formattedDeposit = String.format("%s|%s|%.2f%n", dateTime, "Deposit", depositAmount);
+
+               //Write the formatted deposit information to the file
+               bufreader.write(formattedDeposit);
+               bufreader.flush();
+
+                System.out.println("Your deposit has been successfully logged.");
+            } else {
+                makeDeposit(); // Re-prompt
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 }

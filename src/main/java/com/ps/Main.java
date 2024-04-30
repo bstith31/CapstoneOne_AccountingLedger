@@ -58,8 +58,9 @@ public class Main {
                                     3. Access your Ledger
                                     4. Exit
                                                                     
-                                    Please enter your choice: 
+                                    _____________________________________________________________________________________________________________
                                     """);
+                    System.out.print("Please enter your choice: ");
                     int businessChoice = scanner.nextInt();
                     scanner.nextLine();
                     switch (businessChoice) {
@@ -98,8 +99,9 @@ public class Main {
                                     3. Access your Ledger
                                     4. Exit
                                                                     
-                                    Please enter your choice:
+                                    _____________________________________________________________________________________________________________
                                     """);
+                    System.out.print("Please enter your choice: ");
                     int personalChoice = scanner.nextInt();
                     scanner.nextLine();
                     switch (personalChoice) {
@@ -149,7 +151,7 @@ public class Main {
             System.out.print("Will you be using the current date to log your transaction (Y/N): ");
             String depositChoice = scanner.nextLine().toUpperCase();
 
-            String dateTime;
+            String dateTime = "";
             boolean validInput = true;
             if (depositChoice.equals("Y")) {
                 // Using the current date and time
@@ -209,7 +211,7 @@ public class Main {
             System.out.print("Would you like to log your item with the current date and time (Y/N): ");
             String paymentChoice = scanner.nextLine().toUpperCase();
 
-            String dateTime;
+            String dateTime = "";
             boolean validInput = true;
             if (paymentChoice.equals("Y")) {
                 // Using the current date and time

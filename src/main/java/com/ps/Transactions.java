@@ -1,5 +1,7 @@
 package com.ps;
 
+import java.util.ArrayList;
+
 public class Transactions {
 
     private String date;
@@ -55,4 +57,33 @@ public class Transactions {
                 ", vendor='" + vendor + '\'' +
                 '}';
     }
+
+
+
+
+
+    //Greg's static example
+//    Transaction transaction1 = new Transaction(
+//            LocalDate.of(2024, 3, 14),
+//            LocalTime.of(14, 43, 05, 0),
+//            "Monstera Plant",
+//            "Amazon",
+//            39.99f
+//    );
+    // Transaction transaction1 = new Transaction (Pass it everything in main)
+    //brute
+
+    // ArrayList<Transactions> transaction = new ArrayList<>();
+    // transaction.add(transaction1);
+    // transaction.add(transaction2);
+
+    //Generate a report - Month to Date
+
+    //for (Transaction transaction : transaction){
+        // LocalDate transactionDate = transaction.getDate();
+        // LocalDate dateNow = transaction.getDate();
+        // if(transactionData.getMonthValue == dateNow.getMonthValue())
+            //sout format of report
+
+
 }

@@ -1,16 +1,17 @@
 package com.ps;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.nio.Buffer;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
 
     //Globally declaring scanner
-    static Scanner scanner = new Scanner(System.in);
+    public static Scanner scanner = new Scanner(System.in);
+    // public static ArrayList<Transactions> transactions = new ArrayList<>();
 
 
     public static void main(String[] args) {
@@ -68,7 +69,7 @@ public class Main {
                             break;
                         case 2:
                             System.out.println("2");
-                            // Methods being worked on for payments makePayment();
+                            makePayment();
                             break;
                         case 3:
                             System.out.println("3");
@@ -104,11 +105,11 @@ public class Main {
                     switch (personalChoice) {
                         case 1:
                             System.out.println("1");
-                            // Methods being worked on for deposits makeDeposit();
+                            makeDeposit();
                             break;
                         case 2:
                             System.out.println("2");
-                            // Methods being worked on for payments makePayment();
+                            makePayment();
                             break;
                         case 3:
                             System.out.println("3");
@@ -139,6 +140,8 @@ public class Main {
             System.out.println("============================Welcome to the Deposits Menu============================");
             System.out.println("      Please enter the following information to accurately log your deposit         ");
 
+            System.out.print("What is the description: ");
+
             System.out.print("Please enter a deposit amount: $");
             double depositAmount = scanner.nextDouble();
             scanner.nextLine();
@@ -167,9 +170,9 @@ public class Main {
                 // Format the deposit information
                 String formattedDeposit = String.format("%s|%s|%.2f%n", dateTime, "Deposit", depositAmount);
 
-               //Write the formatted deposit information to the file
-               bufreader.write(formattedDeposit);
-               bufreader.flush();
+                //Write the formatted deposit information to the file
+                bufreader.write(formattedDeposit);
+                bufreader.flush();
 
                 System.out.println("Your deposit has been successfully logged.");
             } else {
@@ -180,5 +183,58 @@ public class Main {
             e.printStackTrace();
         }
 
+    }
+
+    private static void makePayment() {
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("transactions.txt", true))) {
+            System.out.println("============================Welcome to the Payments Menu============================");
+            System.out.println("      Please enter the following information to accurately log your payment         ");
+
+            System.out.println("Enter the following information to properly categorize the payment that you made:");
+            System.out.print("What is the name of the item: ");
+            String paymentName = scanner.nextLine();
+
+            System.out.print("What is a description of the item: ");
+            String description = scanner.nextLine();
+
+            System.out.print("Who is the vendor of the item: ");
+            String vendor = scanner.nextLine();
+
+            System.out.print("How much did the item cost: ");
+            double price = scanner.nextDouble();
+
+            scanner.nextLine();
+
+            System.out.print("Would you like to log your item with the current date and time (Y/N): ");
+            String paymentChoice = scanner.nextLine().toUpperCase();
+
+            String dateTime;
+            boolean validInput = true;
+            if (paymentChoice.equals("Y")) {
+                // Using the current date and time
+                LocalDateTime now = LocalDateTime.now();
+                dateTime = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+            } else if (paymentChoice.equals("N")) {
+                // Using the user's date and time
+                System.out.print("Please enter the date and time (yyyy-MM-dd HH:mm:ss): ");
+                dateTime = scanner.nextLine();
+            } else {
+                System.out.println("Invalid input. Please enter 'Y' or 'N'.");
+                makePayment(); // Re-prompt
+            }
+
+            // Format the payment information
+            String formattedPayment = String.format("%s|%s|%s|%s|%.2f%n", dateTime, description, vendor, paymentName, (-price));
+
+            // Write the formatted payment information to the file
+            writer.write(formattedPayment);
+            writer.flush();
+
+            System.out.println("Your payment has been successfully logged.");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

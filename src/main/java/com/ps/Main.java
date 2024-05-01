@@ -73,7 +73,7 @@ public class Main {
                             break;
                         case 3:
                             System.out.println("3");
-                            //Access Ledger
+                            ledgerMenu();
                             break;
                         case 4:
                             System.out.println("4");
@@ -114,7 +114,7 @@ public class Main {
                             break;
                         case 3:
                             System.out.println("3");
-                            //Access Ledger
+                            ledgerMenu();
                             break;
                         case 4:
                             System.out.println("4");
@@ -282,6 +282,25 @@ public class Main {
         String returnToMenu = scanner.nextLine().toUpperCase();
         return returnToMenu.equals("Y");
 
+    }
+
+    private static void ledgerMenu () {
+        int ledgerChoice;
+
+       // do{
+            System.out.println("============================Welcome to the Ledger Menu============================");
+            System.out.print("""
+                    
+                    1. Print out all.
+                    2. Print out deposits.
+                    3. Print out payments
+                    4. Access Reports
+                    5. Home
+                    
+                    ________________________________________________________________________________________________
+                    """);
+            System.out.println("What would you like to do? Enter a choice:");
+       // }while
     }
 }
 

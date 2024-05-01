@@ -318,6 +318,7 @@ public class Main {
                 break;
             case 4:
                 System.out.println("\nWill access the reports menu\n");
+                reportsMenu();
                 break;
             case 5:
                 returnToMainMenu ();
@@ -329,6 +330,59 @@ public class Main {
        } while (ledgerChoice != 5);
     }
 
+    private static void reportsMenu(){
+
+        int reportsChoice;
+
+        do {
+
+            System.out.println("============================Welcome to your Reports Menu============================");
+            System.out.println("Use the options below to access any reports you may want to see       ");
+            System.out.print("""
+                                        
+                    1. Month to Date:
+                    2. Previous Month:
+                    3. Year to Date:
+                    4. Previous Year:
+                    5. Custom Search:
+                    6. Return to Ledger Menu
+                                        
+                    ________________________________________________________________________________________________
+                    """);
+            System.out.print("What would you like to do? Enter a choice: ");
+
+            reportsChoice = scanner.nextInt();
+
+            switch (reportsChoice){
+
+                case 1:
+                    System.out.println("\nMonth to Date:\n");
+                    break;
+                case 2:
+                    System.out.println("\nPrevious Month:\n");
+                    break;
+                case 3:
+                    System.out.println("\nYear to Date:\n");
+                    break;
+                case 4:
+                    System.out.println("\nPrevious Year:\n");
+                    break;
+                case 5:
+                    System.out.println("\nCustom search:\n");
+                    break;
+                case 6:
+                    ledgerMenu();
+                default:
+                    System.out.println("\nInvalid choice. Please select again\n");
+                    break;
+            }
+
+        }while(reportsChoice != 6);
+
+
+
+
+    }
 
 }
 

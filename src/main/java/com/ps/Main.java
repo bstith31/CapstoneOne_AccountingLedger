@@ -285,10 +285,13 @@ public class Main {
     }
 
     private static void ledgerMenu () {
+
         int ledgerChoice;
 
-       // do{
-            System.out.println("============================Welcome to the Ledger Menu============================");
+       do{
+
+           System.out.println("============================Welcome to the Ledger Menu============================");
+           System.out.println(             "Use the options below to access any reports you may want to see       ");
             System.out.print("""
                     
                     1. Print out all.
@@ -299,8 +302,33 @@ public class Main {
                     
                     ________________________________________________________________________________________________
                     """);
-            System.out.println("What would you like to do? Enter a choice:");
-       // }while
+            System.out.print("What would you like to do? Enter a choice: ");
+
+            ledgerChoice = scanner.nextInt();
+
+            switch(ledgerChoice){
+            case 1:
+                System.out.println("\nWill display all transactions\n");
+                break;
+            case 2:
+                System.out.println("\nWill display all deposits\n");
+                break;
+            case 3:
+                System.out.println("\nWill display all payments\n");
+                break;
+            case 4:
+                System.out.println("\nWill access the reports menu\n");
+                break;
+            case 5:
+                returnToMainMenu ();
+                break;
+            default:
+                System.out.println("\nInvalid choice. Please select again\n");
+                break;
+        }
+       } while (ledgerChoice != 5);
     }
+
+
 }
 

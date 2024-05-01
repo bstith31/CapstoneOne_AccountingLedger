@@ -15,6 +15,8 @@ public class Main {
 
 
     public static void main(String[] args) {
+
+        loadTransactions();
         //Formatting within console to make it more visually appealing and interesting
         System.out.print
                 ("""
@@ -142,7 +144,7 @@ public class Main {
                 System.out.println("============================Welcome to the Deposits Menu============================");
                 System.out.println("Please enter the following information to accurately log your deposit");
 
-                String dateTime ="";
+                String dateTime = "";
                 boolean validInput;
                 do {
                     validInput = true; // Assumption of a valid input
@@ -208,7 +210,6 @@ public class Main {
                 String addAnother = scanner.nextLine().toUpperCase();
                 addAnotherTransaction = addAnother.equals("Y");
             } while (addAnotherTransaction); // Repeats the loop to allow for further inputs
-
 
 
         } catch (Exception e) {
@@ -295,7 +296,7 @@ public class Main {
         }
     }
 
-    private static boolean returnToMainMenu () {
+    private static boolean returnToMainMenu() {
 
         System.out.print("Do you want to return to the main menu? (Y/N): ");
 
@@ -304,53 +305,53 @@ public class Main {
 
     }
 
-    private static void ledgerMenu () {
+    private static void ledgerMenu() {
 
         int ledgerChoice;
 
-       do{
+        do {
 
-           System.out.println("============================Welcome to the Ledger Menu============================");
-           System.out.println(             "Use the options below to access any reports you may want to see       ");
+            System.out.println("============================Welcome to the Ledger Menu============================");
+            System.out.println("Use the options below to access any reports you may want to see       ");
             System.out.print("""
-                    
+                                        
                     1. Print out all.
                     2. Print out deposits.
                     3. Print out payments
                     4. Access Reports
                     5. Home
-                    
+                                        
                     ________________________________________________________________________________________________
                     """);
             System.out.print("What would you like to do? Enter a choice: ");
 
             ledgerChoice = scanner.nextInt();
 
-            switch(ledgerChoice){
-            case 1:
-                System.out.println("\nWill display all transactions\n");
-                break;
-            case 2:
-                System.out.println("\nWill display all deposits\n");
-                break;
-            case 3:
-                System.out.println("\nWill display all payments\n");
-                break;
-            case 4:
-                System.out.println("\nWill access the reports menu\n");
-                reportsMenu();
-                break;
-            case 5:
-                returnToMainMenu ();
-                break;
-            default:
-                System.out.println("\nInvalid choice. Please select again\n");
-                break;
-        }
-       } while (ledgerChoice != 5);
+            switch (ledgerChoice) {
+                case 1:
+                    System.out.println("\nWill display all transactions\n");
+                    break;
+                case 2:
+                    System.out.println("\nWill display all deposits\n");
+                    break;
+                case 3:
+                    System.out.println("\nWill display all payments\n");
+                    break;
+                case 4:
+                    System.out.println("\nWill access the reports menu\n");
+                    reportsMenu();
+                    break;
+                case 5:
+                    returnToMainMenu();
+                    break;
+                default:
+                    System.out.println("\nInvalid choice. Please select again\n");
+                    break;
+            }
+        } while (ledgerChoice != 5);
     }
 
-    private static void reportsMenu(){
+    private static void reportsMenu() {
 
         int reportsChoice;
 
@@ -373,7 +374,7 @@ public class Main {
 
             reportsChoice = scanner.nextInt();
 
-            switch (reportsChoice){
+            switch (reportsChoice) {
 
                 case 1:
                     System.out.println("\nMonth to Date:\n");
@@ -397,18 +398,39 @@ public class Main {
                     break;
             }
 
-        }while(reportsChoice != 6);
-
-        private static void loadTransactions() {
-
-           // try buf
-
-        }
-
-
+        } while (reportsChoice != 6);
 
 
     }
 
+    private static void loadTransactions() {
+
+        try (BufferedReader bufreader = new BufferedReader(new FileReader("transactions.txt"))) {
+
+            String line;
+            bufreader.readLine();
+
+            while ((line = bufreader.readLine()) != null) {
+                String[] parts = line.split("\\|");
+                if (parts.length != 5) {
+                    System.out.println("Invalid line in file: " + line);
+                    continue;
+                }
+                    String date = parts[0];
+                    String time = parts[1];
+                    String description = parts[2];
+                    String vendor = parts[3];
+                    double price = Double.parseDouble(parts[4]);
+                    transactions.add(new Transactions());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+
+        }
+    }
 }
+
+
+
 

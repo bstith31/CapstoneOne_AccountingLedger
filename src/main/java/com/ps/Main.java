@@ -15,7 +15,6 @@ public class Main {
 
 
     public static void main(String[] args) {
-
         //Formatting within console to make it more visually appealing and interesting
         System.out.print
                 ("""
@@ -137,106 +136,152 @@ public class Main {
     }
 
     public static void makeDeposit() {
-
         try (BufferedWriter bufreader = new BufferedWriter(new FileWriter("transactions.txt", true))) {
-            System.out.println("============================Welcome to the Deposits Menu============================");
-            System.out.println("      Please enter the following information to accurately log your deposit         ");
+            boolean addAnotherTransaction = true;
+            do {
+                System.out.println("============================Welcome to the Deposits Menu============================");
+                System.out.println("Please enter the following information to accurately log your deposit");
 
-            System.out.print("What is the description: ");
+                String dateTime;
+                boolean validInput;
+                do {
+                    validInput = true; // Assumption of a valid input
+                    System.out.print("Will you be using the current date to log your transaction (Y/N): ");
+                    String depositChoice = scanner.nextLine().toUpperCase();
 
-            System.out.print("Please enter a deposit amount: $");
-            double depositAmount = scanner.nextDouble();
-            scanner.nextLine();
+                    if (depositChoice.equals("Y")) {
+                        // Allows the user to use the exact date and time of the input
+                        LocalDateTime now = LocalDateTime.now();
+                        dateTime = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                    } else if (depositChoice.equals("N")) {
+                        // Allows the user to use their date and time currently does not have error handling
+                        System.out.print("Please enter the date and time (yyyy-MM-dd HH:mm:ss): ");
+                        dateTime = scanner.nextLine();
+                    } else {
+                        // Handles a missed input and continues the loop when it occurs
+                        System.out.println("Invalid input. Please enter 'Y' or 'N'.");
+                        validInput = false;
+                        continue;
+                    }
 
-            System.out.print("Will you be using the current date to log your transaction (Y/N): ");
-            String depositChoice = scanner.nextLine().toUpperCase();
+                    System.out.print("What is the name of the item: ");
+                    String depositName = scanner.nextLine();
 
-            String dateTime = "";
-            boolean validInput = true;
-            if (depositChoice.equals("Y")) {
-                // Using the current date and time
-                LocalDateTime now = LocalDateTime.now();
-                dateTime = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-            } else if (depositChoice.equals("N")) {
-                // Using the user's date and time
-                System.out.print("Please enter the date and time (yyyy-MM-dd HH:mm:ss): ");
-                dateTime = scanner.nextLine();
-            } else {
-                System.out.println("Invalid input. Please enter 'Y' or 'N'.");
-                validInput = false;
-                dateTime = null;
-            }
+                    System.out.print("What is a description of the item: ");
+                    String description = scanner.nextLine();
 
-            if (validInput) {
+                    System.out.print("Who is the vendor of the item: ");
+                    String vendor = scanner.nextLine();
 
-                // Format the deposit information
-                String formattedDeposit = String.format("%s|%s|%.2f%n", dateTime, "Deposit", depositAmount);
+                    System.out.print("What was the deposit amount: $");
+                    if (!scanner.hasNextDouble()) {
+                        System.out.println("Invalid input. Please enter a valid number.");
+                        scanner.nextLine();
+                        validInput = false;
+                        continue;
+                    }
+                    double depositAmount = scanner.nextDouble();
+                    scanner.nextLine();
 
-                //Write the formatted deposit information to the file
-                bufreader.write(formattedDeposit);
-                bufreader.flush();
+                    // Format the deposit information
+                    String formattedDeposit = String.format("%s|%s|%s|%s|%s|%.2f%n", dateTime, description, vendor, depositName, "Deposit", depositAmount);
 
-                System.out.println("Your deposit has been successfully logged.");
-            } else {
-                makeDeposit(); // Re-prompt
-            }
+                    // Write the formatted deposit information to the file
+                    bufreader.write(formattedDeposit);
+                    bufreader.flush();
+
+                    System.out.println("Your deposit has been successfully logged.");
+                    System.out.println("_____________________________________________________________________________________");
+                } while (!validInput); // Repeat the loop if input is invalid
+
+                System.out.print("Do you want to add another deposit? (Y/N): ");
+                String addAnother = scanner.nextLine().toUpperCase();
+                addAnotherTransaction = addAnother.equals("Y");
+            } while (addAnotherTransaction); // Repeats the loop to allow for further inputs
+
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     private static void makePayment() {
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("transactions.txt", true))) {
-            System.out.println("============================Welcome to the Payments Menu============================");
-            System.out.println("      Please enter the following information to accurately log your payment         ");
+            boolean addAnotherTransaction = true;
+            do {
+                System.out.println("============================Welcome to the Payments Menu============================");
+                System.out.println("Please enter the following information to accurately log your payment");
 
-            System.out.println("Enter the following information to properly categorize the payment that you made:");
-            System.out.print("What is the name of the item: ");
-            String paymentName = scanner.nextLine();
+                String dateTime;
+                boolean validInput;
+                do {
+                    validInput = true; // Assumption of a valid input
+                    System.out.print("Would you like to log your item with the current date and time (Y/N): ");
+                    String paymentChoice = scanner.nextLine().toUpperCase();
 
-            System.out.print("What is a description of the item: ");
-            String description = scanner.nextLine();
+                    if (paymentChoice.equals("Y")) {
+                        // Allows the user to use the exact date and time of the input
+                        LocalDateTime now = LocalDateTime.now();
+                        dateTime = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                    } else if (paymentChoice.equals("N")) {
+                        // Allows the user to use their date and time currently does not have error handling
+                        System.out.print("Please enter the date and time (yyyy-MM-dd HH:mm:ss): ");
+                        dateTime = scanner.nextLine();
+                    } else {
+                        // Handles a missed input and continues the loop when it occurs
+                        System.out.println("Invalid input. Please enter 'Y' or 'N'.");
+                        validInput = false;
+                        continue;
+                    }
 
-            System.out.print("Who is the vendor of the item: ");
-            String vendor = scanner.nextLine();
+                    System.out.print("What is the name of the item: ");
+                    String paymentName = scanner.nextLine();
 
-            System.out.print("How much did the item cost: ");
-            double price = scanner.nextDouble();
+                    System.out.print("What is a description of the item: ");
+                    String description = scanner.nextLine();
 
-            scanner.nextLine();
+                    System.out.print("Who is the vendor of the item: ");
+                    String vendor = scanner.nextLine();
 
-            System.out.print("Would you like to log your item with the current date and time (Y/N): ");
-            String paymentChoice = scanner.nextLine().toUpperCase();
+                    System.out.print("How much did the item cost: $");
+                    if (!scanner.hasNextDouble()) {
+                        System.out.println("Invalid input. Please enter a valid number.");
+                        scanner.nextLine();
+                        validInput = false;
+                        continue;
+                    }
+                    double price = scanner.nextDouble();
+                    scanner.nextLine();
 
-            String dateTime = "";
-            boolean validInput = true;
-            if (paymentChoice.equals("Y")) {
-                // Using the current date and time
-                LocalDateTime now = LocalDateTime.now();
-                dateTime = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-            } else if (paymentChoice.equals("N")) {
-                // Using the user's date and time
-                System.out.print("Please enter the date and time (yyyy-MM-dd HH:mm:ss): ");
-                dateTime = scanner.nextLine();
-            } else {
-                System.out.println("Invalid input. Please enter 'Y' or 'N'.");
-                makePayment(); // Re-prompt
-            }
+                    // Format the payment information
+                    String formattedPayment = String.format("%s|%s|%s|%s|%s|%.2f%n", dateTime, description, vendor, paymentName, "Payment", (-price));
 
-            // Format the payment information
-            String formattedPayment = String.format("%s|%s|%s|%s|%.2f%n", dateTime, description, vendor, paymentName, (-price));
+                    // Write the formatted payment information to the file
+                    writer.write(formattedPayment);
+                    writer.flush();
 
-            // Write the formatted payment information to the file
-            writer.write(formattedPayment);
-            writer.flush();
+                    System.out.println("Your payment has been successfully logged.");
+                    System.out.println("_________________________________________________________________________________________");
+                } while (!validInput); // Repeat the loop if input is invalid
 
-            System.out.println("Your payment has been successfully logged.");
+                System.out.print("Do you want to add another payment? (Y/N): ");
+                String addAnother = scanner.nextLine().toUpperCase();
+                addAnotherTransaction = addAnother.equals("Y");
+            } while (addAnotherTransaction); // Repeat the loop if the user wants to add another payment
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+    private static boolean returnToMainMenu () {
+
+        System.out.print("Do you want to return to the main menu? (Y/N): ");
+
+        String returnToMenu = scanner.nextLine().toUpperCase();
+        return returnToMenu.equals("Y");
+
+    }
 }
+

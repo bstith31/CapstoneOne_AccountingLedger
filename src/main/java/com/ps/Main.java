@@ -11,7 +11,7 @@ public class Main {
 
     //Globally declaring scanner
     public static Scanner scanner = new Scanner(System.in);
-    // public static ArrayList<Transactions> transactions = new ArrayList<>();
+    public static ArrayList<Transactions> transactions = new ArrayList<>();
 
 
     public static void main(String[] args) {
@@ -136,13 +136,13 @@ public class Main {
     }
 
     public static void makeDeposit() {
-        try (BufferedWriter bufreader = new BufferedWriter(new FileWriter("transactions.txt", true))) {
+        try (BufferedWriter bufwriter = new BufferedWriter(new FileWriter("transactions.txt", true))) {
             boolean addAnotherTransaction = true;
             do {
                 System.out.println("============================Welcome to the Deposits Menu============================");
                 System.out.println("Please enter the following information to accurately log your deposit");
 
-                String dateTime;
+                String dateTime ="";
                 boolean validInput;
                 do {
                     validInput = true; // Assumption of a valid input
@@ -183,12 +183,22 @@ public class Main {
                     double depositAmount = scanner.nextDouble();
                     scanner.nextLine();
 
+                    Transactions depositTransaction = new Transactions();
+
+                    depositTransaction.setDate(dateTime);
+                    depositTransaction.setDescription(description);
+                    depositTransaction.setVendor(vendor);
+                    depositTransaction.setPrice(depositAmount);
+
+                    transactions.add(depositTransaction);
+
                     // Format the deposit information
                     String formattedDeposit = String.format("%s|%s|%s|%s|%s|%.2f%n", dateTime, description, vendor, depositName, "Deposit", depositAmount);
 
                     // Write the formatted deposit information to the file
-                    bufreader.write(formattedDeposit);
-                    bufreader.flush();
+                    bufwriter.write(formattedDeposit);
+                    bufwriter.flush();
+
 
                     System.out.println("Your deposit has been successfully logged.");
                     System.out.println("_____________________________________________________________________________________");
@@ -200,6 +210,7 @@ public class Main {
             } while (addAnotherTransaction); // Repeats the loop to allow for further inputs
 
 
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -207,7 +218,7 @@ public class Main {
 
     private static void makePayment() {
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("transactions.txt", true))) {
+        try (BufferedWriter bufwriter = new BufferedWriter(new FileWriter("transactions.txt", true))) {
             boolean addAnotherTransaction = true;
             do {
                 System.out.println("============================Welcome to the Payments Menu============================");
@@ -254,12 +265,21 @@ public class Main {
                     double price = scanner.nextDouble();
                     scanner.nextLine();
 
+                    Transactions paymentTransaction = new Transactions();
+
+                    paymentTransaction.setDate(dateTime);
+                    paymentTransaction.setDescription(description);
+                    paymentTransaction.setVendor(vendor);
+                    paymentTransaction.setPrice((-price));
+
+                    transactions.add(paymentTransaction);
+
                     // Format the payment information
                     String formattedPayment = String.format("%s|%s|%s|%s|%s|%.2f%n", dateTime, description, vendor, paymentName, "Payment", (-price));
 
                     // Write the formatted payment information to the file
-                    writer.write(formattedPayment);
-                    writer.flush();
+                    bufwriter.write(formattedPayment);
+                    bufwriter.flush();
 
                     System.out.println("Your payment has been successfully logged.");
                     System.out.println("_________________________________________________________________________________________");
@@ -378,6 +398,12 @@ public class Main {
             }
 
         }while(reportsChoice != 6);
+
+        private static void loadTransactions() {
+
+           // try buf
+
+        }
 
 
 

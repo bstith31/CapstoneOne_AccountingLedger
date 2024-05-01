@@ -1,7 +1,5 @@
 package com.ps;
 
-import java.util.ArrayList;
-
 public class Transactions {
 
     private String date;
@@ -10,7 +8,7 @@ public class Transactions {
     private String vendor;
     private double price;
 
-    public Transactions(String date, String time, String description, String vendor, double price) {
+    public Transactions() {
         this.date = date;
         this.time = time;
         this.description = description;

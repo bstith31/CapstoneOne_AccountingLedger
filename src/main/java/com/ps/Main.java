@@ -5,7 +5,10 @@ import java.nio.Buffer;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Scanner;
+
 
 public class Main {
 
@@ -16,7 +19,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-        loadTransactions();
         //Formatting within console to make it more visually appealing and interesting
         System.out.print
                 ("""
@@ -195,7 +197,14 @@ public class Main {
                     transactions.add(depositTransaction);
 
                     // Format the deposit information
-                    String formattedDeposit = String.format("%s|%s|%s|%s|%s|%.2f%n", dateTime, description, vendor, depositName, "Deposit", depositAmount);
+                    String formattedDeposit = String.format("%s|%s|%s|%s|%s|%s|%.2f%n",
+                            dateTime.substring(0, 10), // date
+                            dateTime.substring(11), // time
+                            description,
+                            vendor,
+                            depositName,
+                            "Deposit",
+                            depositAmount);
 
                     // Write the formatted deposit information to the file
                     bufwriter.write(formattedDeposit);
@@ -276,7 +285,8 @@ public class Main {
                     transactions.add(paymentTransaction);
 
                     // Format the payment information
-                    String formattedPayment = String.format("%s|%s|%s|%s|%s|%.2f%n", dateTime, description, vendor, paymentName, "Payment", (-price));
+                    String formattedPayment = String.format("%s|%s|%s|%s|%s|%s|%.2f%n", dateTime.substring(0,10), dateTime.substring(11), description, vendor, paymentName, "Payment", (-price));
+
 
                     // Write the formatted payment information to the file
                     bufwriter.write(formattedPayment);
@@ -330,6 +340,7 @@ public class Main {
             switch (ledgerChoice) {
                 case 1:
                     System.out.println("\nWill display all transactions\n");
+                    displayAllTransactions();
                     break;
                 case 2:
                     System.out.println("\nWill display all deposits\n");
@@ -377,7 +388,7 @@ public class Main {
             switch (reportsChoice) {
 
                 case 1:
-                    System.out.println("\nMonth to Date:\n");
+                    System.out.println("\nMonth to date\n");
                     break;
                 case 2:
                     System.out.println("\nPrevious Month:\n");
@@ -403,33 +414,55 @@ public class Main {
 
     }
 
-    private static void loadTransactions() {
-
-        try (BufferedReader bufreader = new BufferedReader(new FileReader("transactions.txt"))) {
-
-            String line;
-            bufreader.readLine();
-
-            while ((line = bufreader.readLine()) != null) {
-                String[] parts = line.split("\\|");
-                if (parts.length != 5) {
-                    System.out.println("Invalid line in file: " + line);
-                    continue;
-                }
-                    String date = parts[0];
-                    String time = parts[1];
-                    String description = parts[2];
-                    String vendor = parts[3];
-                    double price = Double.parseDouble(parts[4]);
-                    transactions.add(new Transactions());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
+    private static void generateMonthToDateReport(List<Transactions> transactions) {
+        LocalDateTime now = LocalDateTime.now();
+        int currentMonth = now.getMonthValue();
+        int currentYear = now.getYear();
 
         }
+
+    private static void displayAllTransactions() {
+        transactions.sort(Comparator.comparing(Transactions::getDate).reversed());
+        System.out.println("\n=====================Start of all the current transactions===========================");
+        for (Transactions item : transactions) {
+            System.out.println(item);
+        }
+        System.out.println("\n=======================End of all the current transactions===========================");
+        ledgerMenu();
     }
+
+    private static void displayAllDeposits() {
+
+    }
+
+
+//    private static void loadTransactions() {
+//
+//        try (BufferedReader bufreader = new BufferedReader(new FileReader("transactions.txt"))) {
+//
+//            String line;
+//            bufreader.readLine();
+//
+//            while ((line = bufreader.readLine()) != null) {
+//                String[] parts = line.split("\\|");
+//                if (parts.length != 5) {
+//                    System.out.println("Invalid line in file: " + line);
+//                    continue;
+//                }
+//                    String date = parts[0];
+//                    String time = parts[1];
+//                    String description = parts[2];
+//                    String vendor = parts[3];
+//                    double price = Double.parseDouble(parts[4]);
+//                    transactions.add(new Transactions());
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            throw new RuntimeException(e);
+//
+//        }
 }
+
 
 
 

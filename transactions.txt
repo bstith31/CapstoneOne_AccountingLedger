@@ -20,4 +20,7 @@ date|time|description|vendor|amount
 2024-05-01 00:33:53|Deposit|5000.00
 2024-05-01 00:37:20|Deposit|5000.00
 2024-05-01 11:24:37|testDescription|testVendor|testItem|Deposit|2000.00
+2024-05-01|12:00:35|testDescription|testVendor|testItem|Deposit|2000.00
 
+2024-05-01|14:46:02|fixed|Me|fixedItem|Deposit|2000.00
+2024-05-01|14:50:33|payment|me|fixedPayment|Payment|-2000.00

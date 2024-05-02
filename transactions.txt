@@ -25,3 +25,6 @@ date|time|description|vendor|amount
 2024-05-02|10:38:40|Something|Someone|150.00
 
 2024-02-24|12:00:00|Something|Someone|-15.00
+2024-05-02|11:17:18|Something|Someone|400.00
+
+2024-05-02|11:17:43|Something|Someone|-20.00

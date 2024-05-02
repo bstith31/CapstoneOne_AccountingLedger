@@ -36,104 +36,110 @@ public class Main {
                 ("Hello!! " + name + ", What is your purpose for using us today, please state your intended purpose for today. \n" +
                         "Is it for (B) Business or is it for (P) Personal, please press the corresponding letter to begin:\s");
 
-        String serviceChoice;
-        boolean validInput;
-        do {
-
-            serviceChoice = scanner.next().toUpperCase();
-            System.out.println
-                    ("_______________________________________________________________________________________________________");
-            scanner.nextLine();
+        String serviceChoice = scanner.next().toUpperCase();
+        System.out.println
+                ("_______________________________________________________________________________________________________");
+        scanner.nextLine();
+//        boolean validInput;
+//        do {
+//
+//            serviceChoice = scanner.next().toUpperCase();
+//            scanner.nextLine();
 
             switch (serviceChoice) {
                 case "B":
-                    System.out.println
-                            (name + "," + """
-                                     Thank you for choosing our service for business! Hopefully we are able to accommodate all of your needs
-                                    Please select from the following options and let us know how we can help with your business needs today:
-                                    _________________________________________________________________________________________________________
-                                                                    
-                                    1. Add Deposit
-                                    2. Make a Payment
-                                    3. Access your Ledger
-                                    4. Exit
-                                                                    
-                                    _____________________________________________________________________________________________________________
-                                    """);
-                    System.out.print("Please enter your choice: ");
-                    int businessChoice = scanner.nextInt();
-                    scanner.nextLine();
-                    switch (businessChoice) {
-                        case 1:
-                            System.out.println("1");
-                            makeDeposit();
-                            break;
-                        case 2:
-                            System.out.println("2");
-                            makePayment();
-                            break;
-                        case 3:
-                            System.out.println("3");
-                            ledgerMenu();
-                            break;
-                        case 4:
-                            System.out.println("4");
-                            //exit
-                            break;
-                        default:
-                            System.out.println("Invalid input");
-                            validInput = false;
-                            break;
-                    }
-                    validInput = true;
-                    break;
+                   do {
+                       System.out.println
+                               (name + "," + """
+                                        Thank you for choosing our service for business! Hopefully we are able to accommodate all of your needs
+                                       Please select from the following options and let us know how we can help with your business needs today:
+                                       _________________________________________________________________________________________________________
+                                                                       
+                                       1. Add Deposit
+                                       2. Make a Payment
+                                       3. Access your Ledger
+                                       4. Exit
+                                                                       
+                                       _____________________________________________________________________________________________________________
+                                       """);
+                       System.out.print("Please enter your choice: ");
+                       int businessChoice = scanner.nextInt();
+                       scanner.nextLine();
+                       switch (businessChoice) {
+                           case 1:
+                               System.out.println("1");
+                               makeDeposit();
+                               break;
+                           case 2:
+                               System.out.println("2");
+                               makePayment();
+                               break;
+                           case 3:
+                               System.out.println("3");
+                               ledgerMenu();
+                               break;
+                           case 4:
+                               System.out.println("4");
+                               //exit
+                               break;
+                           default:
+                               System.out.println("Invalid input");
+//                               validInput = false;
+                               break;
+                       }
+                   }while (true);
+//                    validInput = true;
+//                    break;
                 case "P":
-                    System.out.println
-                            (name + "," + """
-                                     Thank you for choosing our service for personal! Hopefully we are able to accommodate all of your needs
-                                    Please select from the following options and let us know how we can help you with your personal needs today:
-                                    ____________________________________________________________________________________________________________
-                                                                    
-                                    1. Add Deposit
-                                    2. Make a Payment
-                                    3. Access your Ledger
-                                    4. Exit
-                                                                    
-                                    _____________________________________________________________________________________________________________
-                                    """);
-                    System.out.print("Please enter your choice: ");
-                    int personalChoice = scanner.nextInt();
-                    scanner.nextLine();
-                    switch (personalChoice) {
-                        case 1:
-                            System.out.println("1");
-                            makeDeposit();
-                            break;
-                        case 2:
-                            System.out.println("2");
-                            makePayment();
-                            break;
-                        case 3:
-                            System.out.println("3");
-                            ledgerMenu();
-                            break;
-                        case 4:
-                            System.out.println("4");
-                            System.out.println("Exiting the program");
-                            break;
-                        default:
-                            System.out.println("Invalid input");
-                            validInput = false;
-                            break;
-                    }
-                    validInput = true;
-                    break;
-                default:
+                    do {
+                        System.out.println
+                                (name + "," + """
+                                         Thank you for choosing our service for personal! Hopefully we are able to accommodate all of your needs
+                                        Please select from the following options and let us know how we can help you with your personal needs today:
+                                        ____________________________________________________________________________________________________________
+                                                                        
+                                        1. Add Deposit
+                                        2. Make a Payment
+                                        3. Access your Ledger
+                                        4. Exit
+                                                                        
+                                        _____________________________________________________________________________________________________________
+                                        """);
+                        System.out.print("Please enter your choice: ");
+                        int personalChoice = scanner.nextInt();
+                        scanner.nextLine();
+                        switch (personalChoice) {
+                            case 1:
+                                System.out.println("1");
+                                makeDeposit();
+                                break;
+                            case 2:
+                                System.out.println("2");
+                                makePayment();
+                                break;
+                            case 3:
+                                System.out.println("3");
+                                ledgerMenu();
+                                break;
+                            case 4:
+                                System.out.println("4");
+                                System.out.println("Exiting the program");
+                                break;
+                            default:
+                                System.out.println("Invalid input");
+//                            validInput = false;
+                                break;
+                        }
+                    } while (true);
+
+//                    validInput = true;
+//                    break;
+                    default:
                     System.out.print("That is not a valid option, please select a valid option (B) for Business or (P) for Personal: ");
-                    validInput = false;
+//                    validInput = false;
                     break;
             }
-        } while (!validInput);
+//        } while (!validInput);
     }
 
     public static void makeDeposit() {

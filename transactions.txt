@@ -10,3 +10,13 @@ date|time|description|vendor|amount
 1|Error Handling|Brian|Time Error|-404.00
 2024-05-01|20:06:21|Safety|Me|-400.00
 
+2024-05-02 01:14:33|Something|Someone|200.00
+2024-05-02 01:18:41|Something|Someone|30.00
+1997-05-20 12:00:00|Old Thing|Old One|300.00
+2024-05-02|01:42:44|Something|Someoen|-200.00
+2024-05-02|01:43:35|Something|Someone|-200.00
+2024-05-02 01:44:30|Something|Someone|200.00
+2024-05-02|01:50:15|Something|Someone|200.00
+2024-05-02|01:50:15|Something|Someone|2000.00
+2024-05-02|01:50:15|Something|Someone|30000.00
+

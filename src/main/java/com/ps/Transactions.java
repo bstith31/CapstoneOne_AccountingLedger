@@ -8,11 +8,11 @@ public class Transactions {
     private String vendor;
     private double price;
 
-    public Transactions() {
-        this.date = date;
-        this.time = time;
-        this.description = description;
-        this.vendor = vendor;
+    public Transactions(String date, String time, String description, String vendor, double depositAmount) {
+        this.date = this.date;
+        this.time = this.time;
+        this.description = this.description;
+        this.vendor = this.vendor;
         this.price = price;
     }
 

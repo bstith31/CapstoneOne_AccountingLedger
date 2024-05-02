@@ -1,7 +1,6 @@
 package com.ps;
 
 import java.io.*;
-import java.nio.Buffer;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -11,10 +10,12 @@ public class Main {
 
     //Globally declaring scanner
     public static Scanner scanner = new Scanner(System.in);
-    // public static ArrayList<Transactions> transactions = new ArrayList<>();
+    public static ArrayList<String> transactions = new ArrayList<String>();
 
 
     public static void main(String[] args) {
+
+        loadTransactions();
         //Formatting within console to make it more visually appealing and interesting
         System.out.print
                 ("""
@@ -136,7 +137,8 @@ public class Main {
     }
 
     public static void makeDeposit() {
-        try (BufferedWriter bufreader = new BufferedWriter(new FileWriter("transactions.txt", true))) {
+
+        try (BufferedWriter bufwriter = new BufferedWriter(new FileWriter("transactions.txt", true))) {
             boolean addAnotherTransaction = true;
             do {
                 System.out.println("============================Welcome to the Deposits Menu============================");
@@ -181,15 +183,18 @@ public class Main {
                         validInput = false;
                         continue;
                     }
-                    double depositAmount = scanner.nextDouble();
+                    double price = scanner.nextDouble();
                     scanner.nextLine();
 
                     // Format the deposit information
-                    String formattedDeposit = String.format("%s|%s|%s|%.2f%n", dateTime, description, vendor, depositAmount);
+                    String formattedDeposit = String.format("%s|%s|%s|%s|%.2f%n", date, time, description, vendor,  price);
+
+                    // Add formatted deposit to the ArrayList
+                    transactions.add(formattedDeposit);
 
                     // Write the formatted deposit information to the file
-                    bufreader.write(formattedDeposit);
-                    bufreader.flush();
+                    bufwriter.write(formattedDeposit + "\n");
+                    bufwriter.flush(); // Flush to ensure data is written immediately
 
                     System.out.println("Your deposit has been successfully logged.");
                     System.out.println("_____________________________________________________________________________________");
@@ -200,7 +205,6 @@ public class Main {
                 addAnotherTransaction = addAnother.equals("Y");
             } while (addAnotherTransaction); // Repeats the loop to allow for further inputs
 
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -208,7 +212,7 @@ public class Main {
 
     private static void makePayment() {
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("transactions.txt", true))) {
+        try (BufferedWriter bufwriter = new BufferedWriter(new FileWriter("transactions.txt", true))) {
             boolean addAnotherTransaction = true;
             do {
                 System.out.println("============================Welcome to the Payments Menu============================");
@@ -259,9 +263,11 @@ public class Main {
                     // Format the payment information
                     String formattedPayment = String.format("%s|%s|%s|%s|%.2f%n", date, time, description, vendor, (-price));
 
+                    transactions.add(formattedPayment);
+
                     // Write the formatted payment information to the file
-                    writer.write(formattedPayment);
-                    writer.flush();
+                    bufwriter.write(formattedPayment);
+                    bufwriter.flush();
 
                     System.out.println("Your payment has been successfully logged.");
                     System.out.println("_________________________________________________________________________________________");
@@ -277,13 +283,10 @@ public class Main {
         }
     }
 
-    private static boolean returnToPreviousScreen() {
-
-        System.out.print("Do you want to return to the Previous Screen? (Y/N): ");
-
+    private static boolean returnToMainMenu() {
+        System.out.print("Do you want to return to the main menu? (Y/N): ");
         String returnToMenu = scanner.nextLine().toUpperCase();
         return returnToMenu.equals("Y");
-
     }
 
     private static void ledgerMenu() {
@@ -460,7 +463,27 @@ public class Main {
         }
 
     }
+//
+//    private static void monthToDate () {
+//
+//        // Get current date
+//        LocalDate currentDate = LocalDate.now();
+//        // Get the first day of the current month
+//        LocalDate firstDayOfMonth = currentDate.with(TemporalAdjusters.firstDayOfMonth());
+//        // Call method to display transactions for the specified period
+//        displayTransactionsForPeriod(firstDayOfMonth, currentDate);
+//    }
 
+    private static void loadTransactions() {
+        try (BufferedReader reader = new BufferedReader(new FileReader("transactions.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                transactions.add(line);
+            }
+        } catch (IOException e) {
+            System.out.println("Error loading inventory: " + e.getMessage());
+        }
+    }
 
 
 }

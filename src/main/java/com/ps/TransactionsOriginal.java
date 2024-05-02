@@ -1,6 +1,6 @@
 package com.ps;
 
-public class Transactions {
+public class TransactionsOriginal  {
 
     private String date;
     private String time;
@@ -8,7 +8,7 @@ public class Transactions {
     private String vendor;
     private double price;
 
-    public Transactions() {
+    public TransactionsOriginal () {
         this.date = date;
         this.time = time;
         this.description = description;
@@ -16,11 +16,8 @@ public class Transactions {
         this.price = price;
     }
 
-    public Transactions(String date, String time, String description, String vendor) {
-        this.date = date;
-        this.time = time;
-        this.description = description;
-        this.vendor = vendor;
+    public TransactionsOriginal(String date, String time, String description, String vendor) {
+        this();
     }
 
     public String getDate() {
@@ -91,10 +88,10 @@ public class Transactions {
     //Generate a report - Month to Date
 
     //for (Transaction transaction : transaction){
-    // LocalDate transactionDate = transaction.getDate();
-    // LocalDate dateNow = transaction.getDate();
-    // if(transactionData.getMonthValue == dateNow.getMonthValue())
-    //sout format of report
+        // LocalDate transactionDate = transaction.getDate();
+        // LocalDate dateNow = transaction.getDate();
+        // if(transactionData.getMonthValue == dateNow.getMonthValue())
+            //sout format of report
 
 
 }

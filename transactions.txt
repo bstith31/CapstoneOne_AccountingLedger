@@ -7,20 +7,6 @@ date|time|description|vendor|amount
 2024-04-30|09:43:00|Monstera Plant|Greg|-39.99
 2024-04-30|15:43:00|HeartLeaf Plant|Greg|-19.99
 2021-01-01|00:20:00|Something|Someone|-100.00
-2024-04-30 13:01:45|Deposit|5000.00
-2024-04-30 13:02:44|Something|Someone|Something|-100.00
 1|Error Handling|Brian|Time Error|-404.00
-2024-04-30 15:52:54|Deposit|500.00
-1|Deposit|50.00
-2024-04-30 23:46:18|Deposit|5000.00
-2000-02-28 12:31:00|Deposit|20.00
-2024-04-30 23:59:52|Something|Someone|Something|Payment|-70.00
-2024-05-01 00:15:02|something|Someone|Something|Payment|-50.00
-2024-05-01 00:25:43|Deposit|0.00
-2024-05-01 00:33:53|Deposit|5000.00
-2024-05-01 00:37:20|Deposit|5000.00
-2024-05-01 11:24:37|testDescription|testVendor|testItem|Deposit|2000.00
-2024-05-01|12:00:35|testDescription|testVendor|testItem|Deposit|2000.00
+2024-05-01|20:06:21|Safety|Me|-400.00
 
-2024-05-01|14:46:02|fixed|Me|fixedItem|Deposit|2000.00
-2024-05-01|14:50:33|payment|me|fixedPayment|Payment|-2000.00

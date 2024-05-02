@@ -1,22 +1,22 @@
 package com.ps;
 
 import java.io.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
 
-    //Globally declaring scanner
     public static Scanner scanner = new Scanner(System.in);
     public static ArrayList<String> transactions = new ArrayList<String>();
-
 
     public static void main(String[] args) {
 
         loadTransactions();
-        //Formatting within console to make it more visually appealing and interesting
+
         System.out.print
                 ("""
                         =======================================================================================================
@@ -39,7 +39,7 @@ public class Main {
         String serviceChoice;
         boolean validInput;
         do {
-            //Converts input to uppercase to handle any misinputs of B or P
+
             serviceChoice = scanner.next().toUpperCase();
             System.out.println
                     ("_______________________________________________________________________________________________________");
@@ -119,7 +119,7 @@ public class Main {
                             break;
                         case 4:
                             System.out.println("4");
-                            //exit
+                            System.out.println("Exiting the program");
                             break;
                         default:
                             System.out.println("Invalid input");
@@ -141,13 +141,13 @@ public class Main {
         try (BufferedWriter bufwriter = new BufferedWriter(new FileWriter("transactions.txt", true))) {
             boolean addAnotherTransaction = true;
             do {
-                System.out.println("============================Welcome to the Deposits Menu============================");
+                System.out.println("\n============================Welcome to the Deposits Menu============================");
                 System.out.println("Please enter the following information to accurately log your deposit");
 
                 String dateTime;
                 boolean validInput;
                 do {
-                    validInput = true; // Assumption of a valid input
+                    validInput = true;
                     System.out.print("Will you be using the current date to log your transaction (Y/N): ");
                     String depositChoice = scanner.nextLine().toUpperCase();
 
@@ -215,7 +215,7 @@ public class Main {
         try (BufferedWriter bufwriter = new BufferedWriter(new FileWriter("transactions.txt", true))) {
             boolean addAnotherTransaction = true;
             do {
-                System.out.println("============================Welcome to the Payments Menu============================");
+                System.out.println("\n============================Welcome to the Payments Menu============================");
                 System.out.println("Please enter the following information to accurately log your payment");
 
                 String dateTime;
@@ -295,7 +295,7 @@ public class Main {
 
         do {
 
-            System.out.println("============================Welcome to the Ledger Menu============================");
+            System.out.println("\n============================Welcome to the Ledger Menu============================");
             System.out.println("Use the options below to access any reports you may want to see       ");
             System.out.print("""
                                         
@@ -345,7 +345,7 @@ public class Main {
 
         do {
 
-            System.out.println("============================Welcome to your Reports Menu============================");
+            System.out.println("\n============================Welcome to your Reports Menu============================");
             System.out.println("Use the options below to access any reports you may want to see       ");
             System.out.print("""
                                         
@@ -366,15 +366,19 @@ public class Main {
 
                 case 1:
                     System.out.println("\nMonth to Date:\n");
+                    displayTransactionsForMonthToDate();
                     break;
                 case 2:
                     System.out.println("\nPrevious Month:\n");
+                    displayTransactionsForPreviousMonth();
                     break;
                 case 3:
                     System.out.println("\nYear to Date:\n");
+                    displayTransactionsForYearToDate();
                     break;
                 case 4:
                     System.out.println("\nPrevious Year:\n");
+                    displayTransactionsForPreviousYear();
                     break;
                 case 5:
                     System.out.println("\nCustom search:\n");
@@ -388,8 +392,6 @@ public class Main {
             }
 
         } while (reportsChoice != 6);
-
-
     }
 
     private static void displayAllTransactions() {
@@ -408,7 +410,6 @@ public class Main {
         }
 
     }
-
     private static void displayAllDeposits() {
         try (BufferedReader bufreader = new BufferedReader(new FileReader("transactions.txt"))) {
             System.out.println("\n=====================Start of all the deposits===========================");
@@ -429,13 +430,11 @@ public class Main {
                     }
                 }
             }
-
             System.out.println("\n=======================End of all the deposits===========================");
         } catch (IOException e) {
             System.out.println("Error reading transactions file: " + e.getMessage());
         }
     }
-
     private static void displayAllPayments() {
         try (BufferedReader bufreader = new BufferedReader(new FileReader("transactions.txt"))) {
             System.out.println("\n=====================Start of all the payments===========================");
@@ -456,24 +455,11 @@ public class Main {
                     }
                 }
             }
-
             System.out.println("\n=======================End of all the payments===========================");
         } catch (IOException e) {
             System.out.println("Error reading transactions file: " + e.getMessage());
         }
-
     }
-//
-//    private static void monthToDate () {
-//
-//        // Get current date
-//        LocalDate currentDate = LocalDate.now();
-//        // Get the first day of the current month
-//        LocalDate firstDayOfMonth = currentDate.with(TemporalAdjusters.firstDayOfMonth());
-//        // Call method to display transactions for the specified period
-//        displayTransactionsForPeriod(firstDayOfMonth, currentDate);
-//    }
-
     private static void loadTransactions() {
         try (BufferedReader bufreader = new BufferedReader(new FileReader("transactions.txt"))) {
             String line;
@@ -484,6 +470,55 @@ public class Main {
             System.out.println("Error loading inventory: " + e.getMessage());
         }
     }
+    private static void displayTransactionsForMonthToDate() {
+        LocalDate currentDate = LocalDate.now();
+        LocalDate firstDayOfMonth = currentDate.with(TemporalAdjusters.firstDayOfMonth());
+        displayTransactionsMethod(firstDayOfMonth, currentDate);
+    }
+    private static void displayTransactionsForPreviousMonth() {
+        LocalDate currentDate = LocalDate.now();
+        LocalDate firstDayOfPreviousMonth = currentDate.minusMonths(1).with(TemporalAdjusters.firstDayOfMonth());
+        LocalDate lastDayOfPreviousMonth = firstDayOfPreviousMonth.with(TemporalAdjusters.lastDayOfMonth());
+        displayTransactionsMethod(firstDayOfPreviousMonth, lastDayOfPreviousMonth);
+    }
+    private static void displayTransactionsForYearToDate() {
+        LocalDate currentDate = LocalDate.now();
+        LocalDate firstDayOfYear = LocalDate.of(currentDate.getYear(), 1, 1);
+        displayTransactionsMethod(firstDayOfYear, currentDate);
+    }
+    private static void displayTransactionsForPreviousYear() {
+        LocalDate currentDate = LocalDate.now();
+        LocalDate firstDayOfPreviousYear = LocalDate.of(currentDate.minusYears(1).getYear(), 1, 1);
+        LocalDate lastDayOfPreviousYear = LocalDate.of(currentDate.minusYears(1).getYear(), 12, 31);
+        displayTransactionsMethod(firstDayOfPreviousYear, lastDayOfPreviousYear);
+    }
+    private static void displayTransactionsMethod(LocalDate startDate, LocalDate endDate) {
+        try (BufferedReader bufreader = new BufferedReader(new FileReader("transactions.txt"))) {
+            System.out.println("\n=====================Transactions===========================");
 
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            String line;
+            while ((line = bufreader.readLine()) != null) {
+                String[] parts = line.split("\\|");
+                if (parts.length >= 1) {
+                    try {
+                        LocalDate transactionDate = LocalDate.parse(parts[0], formatter);
+                        if (!transactionDate.isBefore(startDate) && !transactionDate.isAfter(endDate)) {
+                            System.out.println(line);
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Error parsing date in line: " + line);
+                    }
+                }
+            }
+            System.out.println("\n=======================End of Transactions===========================");
+        } catch (IOException e) {
+            System.out.println("Error reading transactions file: " + e.getMessage());
+        }
+    }
 
-}
+    private static void customSearch () {
+
+    }
+
+    }

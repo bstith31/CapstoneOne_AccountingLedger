@@ -19,9 +19,9 @@ public class Main {
 
         System.out.print
                 ("""
-                        =======================================================================================================
-                        ==================================Brian's Accounting Ledger============================================
-                        ======================Why manage your finances when I can do it for you================================
+                        =============================================================================================================
+                        ======================================Brian's Accounting Ledger==============================================
+                        ===========================Why track your finances when I can do it for you==================================
                                          
                         Welcome!!! Thank you for taking the time to use Brian's Accounting Ledger as your first choice!
                         Please enter some of the following information to begin tracking your ongoing financial transactions!
@@ -31,14 +31,14 @@ public class Main {
         name = scanner.nextLine();
 
         System.out.println
-                ("_______________________________________________________________________________________________________");
+                ("______________________________________________________________________________________________________________\n");
         System.out.print
                 ("Hello!! " + name + ", What is your purpose for using us today, please state your intended purpose for today. \n" +
                         "Is it for (B) Business or is it for (P) Personal, please press the corresponding letter to begin:\s");
 
         String serviceChoice = scanner.next().toUpperCase();
         System.out.println
-                ("_______________________________________________________________________________________________________");
+                ("\n______________________________________________________________________________________________________________\n");
         scanner.nextLine();
 //        boolean validInput;
 //        do {
@@ -46,99 +46,99 @@ public class Main {
 //            serviceChoice = scanner.next().toUpperCase();
 //            scanner.nextLine();
 
-            switch (serviceChoice) {
-                case "B":
-                   do {
-                       System.out.println
-                               (name + "," + """
-                                        Thank you for choosing our service for business! Hopefully we are able to accommodate all of your needs
-                                       Please select from the following options and let us know how we can help with your business needs today:
-                                       _________________________________________________________________________________________________________
-                                                                       
-                                       1. Add Deposit
-                                       2. Make a Payment
-                                       3. Access your Ledger
-                                       4. Exit
-                                                                       
-                                       _____________________________________________________________________________________________________________
-                                       """);
-                       System.out.print("Please enter your choice: ");
-                       int businessChoice = scanner.nextInt();
-                       scanner.nextLine();
-                       switch (businessChoice) {
-                           case 1:
-                               System.out.println("1");
-                               makeDeposit();
-                               break;
-                           case 2:
-                               System.out.println("2");
-                               makePayment();
-                               break;
-                           case 3:
-                               System.out.println("3");
-                               ledgerMenu();
-                               break;
-                           case 4:
-                               System.out.println("4");
-                               //exit
-                               break;
-                           default:
-                               System.out.println("Invalid input");
+        switch (serviceChoice) {
+            case "B":
+                do {
+                    System.out.println
+                            (name + "," + """
+                                     Thank you for choosing our service for business! Hopefully we are able to accommodate all of your needs
+                                    Please select from the following options and let us know how we can help with your business needs today:
+                                    ______________________________________________________________________________________________________________
+                                                                    
+                                    1. Add Deposit
+                                    2. Make a Payment
+                                    3. Access your Ledger
+                                    4. Exit
+                                                                    
+                                    ______________________________________________________________________________________________________________
+                                    """);
+                    System.out.print("Please enter your choice: ");
+                    int businessChoice = scanner.nextInt();
+                    scanner.nextLine();
+                    switch (businessChoice) {
+                        case 1:
+                            System.out.println("1");
+                            makeDeposit();
+                            break;
+                        case 2:
+                            System.out.println("2");
+                            makePayment();
+                            break;
+                        case 3:
+                            System.out.println("3");
+                            ledgerMenu();
+                            break;
+                        case 4:
+                            System.out.println("4");
+                            //exit
+                            break;
+                        default:
+                            System.out.println("Invalid input");
 //                               validInput = false;
-                               break;
-                       }
-                   }while (true);
+                            break;
+                    }
+                } while (true);
 //                    validInput = true;
 //                    break;
-                case "P":
-                    do {
-                        System.out.println
-                                (name + "," + """
-                                         Thank you for choosing our service for personal! Hopefully we are able to accommodate all of your needs
-                                        Please select from the following options and let us know how we can help you with your personal needs today:
-                                        ____________________________________________________________________________________________________________
-                                                                        
-                                        1. Add Deposit
-                                        2. Make a Payment
-                                        3. Access your Ledger
-                                        4. Exit
-                                                                        
-                                        _____________________________________________________________________________________________________________
-                                        """);
-                        System.out.print("Please enter your choice: ");
-                        int personalChoice = scanner.nextInt();
-                        scanner.nextLine();
-                        switch (personalChoice) {
-                            case 1:
-                                System.out.println("1");
-                                makeDeposit();
-                                break;
-                            case 2:
-                                System.out.println("2");
-                                makePayment();
-                                break;
-                            case 3:
-                                System.out.println("3");
-                                ledgerMenu();
-                                break;
-                            case 4:
-                                System.out.println("4");
-                                System.out.println("Exiting the program");
-                                break;
-                            default:
-                                System.out.println("Invalid input");
+            case "P":
+                do {
+                    System.out.println
+                            (name + "," + """
+                                     Thank you for choosing our service for personal! Hopefully we are able to accommodate all of your needs
+                                    Please select from the following options and let us know how we can help you with your personal needs today:
+                                    ______________________________________________________________________________________________________________
+                                                                    
+                                    1. Add Deposit
+                                    2. Make a Payment
+                                    3. Access your Ledger
+                                    4. Exit
+                                                                    
+                                    ______________________________________________________________________________________________________________
+                                    """);
+                    System.out.print("Please enter your choice: ");
+                    int personalChoice = scanner.nextInt();
+                    scanner.nextLine();
+                    switch (personalChoice) {
+                        case 1:
+                            System.out.println("1");
+                            makeDeposit();
+                            break;
+                        case 2:
+                            System.out.println("2");
+                            makePayment();
+                            break;
+                        case 3:
+                            System.out.println("3");
+                            ledgerMenu();
+                            break;
+                        case 4:
+                            System.out.println("4");
+                            System.out.println("Exiting the program");
+                            break;
+                        default:
+                            System.out.println("Invalid input");
 //                            validInput = false;
-                                break;
-                        }
-                    } while (true);
+                            break;
+                    }
+                } while (true);
 
 //                    validInput = true;
 //                    break;
-                    default:
-                    System.out.print("That is not a valid option, please select a valid option (B) for Business or (P) for Personal: ");
+            default:
+                System.out.print("That is not a valid option, please select a valid option (B) for Business or (P) for Personal: ");
 //                    validInput = false;
-                    break;
-            }
+                break;
+        }
 //        } while (!validInput);
     }
 
@@ -147,7 +147,7 @@ public class Main {
         try (BufferedWriter bufwriter = new BufferedWriter(new FileWriter("transactions.txt", true))) {
             boolean addAnotherTransaction = true;
             do {
-                System.out.println("\n============================Welcome to the Deposits Menu============================");
+                System.out.println("\n====================================Welcome to Deposits============================================\n");
                 System.out.println("Please enter the following information to accurately log your deposit");
 
                 String dateTime;
@@ -193,7 +193,7 @@ public class Main {
                     scanner.nextLine();
 
                     // Format the deposit information
-                    String formattedDeposit = String.format("%s|%s|%s|%s|%.2f%n", date, time, description, vendor,  price);
+                    String formattedDeposit = String.format("%s|%s|%s|%s|%.2f%n", date, time, description, vendor, price);
 
                     // Add formatted deposit to the ArrayList
                     transactions.add(formattedDeposit);
@@ -203,7 +203,7 @@ public class Main {
                     bufwriter.flush(); // Flush to ensure data is written immediately
 
                     System.out.println("Your deposit has been successfully logged.");
-                    System.out.println("_____________________________________________________________________________________");
+                    System.out.println("______________________________________________________________________________________________________________");
                 } while (!validInput); // Repeat the loop if input is invalid
 
                 System.out.print("Do you want to add another deposit? (Y/N): ");
@@ -221,7 +221,7 @@ public class Main {
         try (BufferedWriter bufwriter = new BufferedWriter(new FileWriter("transactions.txt", true))) {
             boolean addAnotherTransaction = true;
             do {
-                System.out.println("\n============================Welcome to the Payments Menu============================");
+                System.out.println("\n====================================Welcome to Payments============================================\n");
                 System.out.println("Please enter the following information to accurately log your payment");
 
                 String dateTime;
@@ -276,7 +276,7 @@ public class Main {
                     bufwriter.flush();
 
                     System.out.println("Your payment has been successfully logged.");
-                    System.out.println("_________________________________________________________________________________________");
+                    System.out.println("______________________________________________________________________________________________________________");
                 } while (!validInput); // Repeat the loop if input is invalid
 
                 System.out.print("Do you want to add another payment? (Y/N): ");
@@ -301,7 +301,7 @@ public class Main {
 
         do {
 
-            System.out.println("\n============================Welcome to the Ledger Menu============================");
+            System.out.println("\n======================================Welcome to your Ledger==============================================\n");
             System.out.println("Use the options below to access any reports you may want to see       ");
             System.out.print("""
                                         
@@ -309,11 +309,11 @@ public class Main {
                     2. Print out deposits.
                     3. Print out payments
                     4. Access Reports
-                    5. Home
+                    5. Return to Main Menu
                                         
-                    ________________________________________________________________________________________________
+                    ______________________________________________________________________________________________________________
                     """);
-            System.out.print("What would you like to do? Enter a choice: ");
+            System.out.print("Are there any specific things you want to view? Enter a choice: ");
 
             ledgerChoice = scanner.nextInt();
 
@@ -336,7 +336,7 @@ public class Main {
                     break;
                 case 5:
                     System.out.println("returning");
-                   // returnToMainMenu();
+                    // returnToMainMenu();
                     break;
                 default:
                     System.out.println("\nInvalid choice. Please select again\n");
@@ -351,7 +351,7 @@ public class Main {
 
         do {
 
-            System.out.println("\n============================Welcome to your Reports Menu============================");
+            System.out.println("\n======================================Welcome to your Reports==============================================\n");
             System.out.println("Use the options below to access any reports you may want to see       ");
             System.out.print("""
                                         
@@ -362,9 +362,9 @@ public class Main {
                     5. Custom Search:
                     6. Return to Ledger Menu
                                         
-                    ________________________________________________________________________________________________
+                    ______________________________________________________________________________________________________________
                     """);
-            System.out.print("What would you like to do? Enter a choice: ");
+            System.out.print("Which report would you like to view? Enter a choice from the following: ");
 
             reportsChoice = scanner.nextInt();
 
@@ -402,7 +402,7 @@ public class Main {
 
     private static void displayAllTransactions() {
         try (BufferedReader bufreader = new BufferedReader(new FileReader("transactions.txt"))) {
-            System.out.println("\n=====================Start of all the current transactions===========================");
+            System.out.println("\n=====================Start of all the logged transactions===========================\n");
 
             String line;
             bufreader.readLine();
@@ -410,15 +410,16 @@ public class Main {
                 System.out.println(line);
             }
 
-            System.out.println("\n=======================End of all the current transactions===========================");
+            System.out.println("\n_______________________End of all the logged transactions____________________________");
         } catch (IOException e) {
             System.out.println("Error reading transactions file: " + e.getMessage());
         }
 
     }
+
     private static void displayAllDeposits() {
         try (BufferedReader bufreader = new BufferedReader(new FileReader("transactions.txt"))) {
-            System.out.println("\n=====================Start of all the deposits===========================");
+            System.out.println("\n=====================Start of all your deposits===========================\n");
 
             String line;
             bufreader.readLine();
@@ -436,14 +437,15 @@ public class Main {
                     }
                 }
             }
-            System.out.println("\n=======================End of all the deposits===========================");
+            System.out.println("\n__________________________End of all your deposits______________________________");
         } catch (IOException e) {
             System.out.println("Error reading transactions file: " + e.getMessage());
         }
     }
+
     private static void displayAllPayments() {
         try (BufferedReader bufreader = new BufferedReader(new FileReader("transactions.txt"))) {
-            System.out.println("\n=====================Start of all the payments===========================");
+            System.out.println("\n=====================Start of all your payments===========================\n");
 
             String line;
             bufreader.readLine();
@@ -461,11 +463,12 @@ public class Main {
                     }
                 }
             }
-            System.out.println("\n=======================End of all the payments===========================");
+            System.out.println("\n____________________________End of all your payments_______________________________");
         } catch (IOException e) {
             System.out.println("Error reading transactions file: " + e.getMessage());
         }
     }
+
     private static void loadTransactions() {
         try (BufferedReader bufreader = new BufferedReader(new FileReader("transactions.txt"))) {
             String line;
@@ -476,31 +479,36 @@ public class Main {
             System.out.println("Error loading inventory: " + e.getMessage());
         }
     }
+
     private static void displayTransactionsForMonthToDate() {
         LocalDate currentDate = LocalDate.now();
         LocalDate firstDayOfMonth = currentDate.with(TemporalAdjusters.firstDayOfMonth());
         displayTransactionsMethod(firstDayOfMonth, currentDate);
     }
+
     private static void displayTransactionsForPreviousMonth() {
         LocalDate currentDate = LocalDate.now();
         LocalDate firstDayOfPreviousMonth = currentDate.minusMonths(1).with(TemporalAdjusters.firstDayOfMonth());
         LocalDate lastDayOfPreviousMonth = firstDayOfPreviousMonth.with(TemporalAdjusters.lastDayOfMonth());
         displayTransactionsMethod(firstDayOfPreviousMonth, lastDayOfPreviousMonth);
     }
+
     private static void displayTransactionsForYearToDate() {
         LocalDate currentDate = LocalDate.now();
         LocalDate firstDayOfYear = LocalDate.of(currentDate.getYear(), 1, 1);
         displayTransactionsMethod(firstDayOfYear, currentDate);
     }
+
     private static void displayTransactionsForPreviousYear() {
         LocalDate currentDate = LocalDate.now();
         LocalDate firstDayOfPreviousYear = LocalDate.of(currentDate.minusYears(1).getYear(), 1, 1);
         LocalDate lastDayOfPreviousYear = LocalDate.of(currentDate.minusYears(1).getYear(), 12, 31);
         displayTransactionsMethod(firstDayOfPreviousYear, lastDayOfPreviousYear);
     }
+
     private static void displayTransactionsMethod(LocalDate startDate, LocalDate endDate) {
         try (BufferedReader bufreader = new BufferedReader(new FileReader("transactions.txt"))) {
-            System.out.println("\n=====================Transactions===========================");
+            System.out.println("\n=====================Transactions===========================\n");
 
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             String line;
@@ -517,14 +525,14 @@ public class Main {
                     }
                 }
             }
-            System.out.println("\n=======================End of Transactions===========================");
+            System.out.println("\n___________________________________End of Transactions____________________________");
         } catch (IOException e) {
             System.out.println("Error reading transactions file: " + e.getMessage());
         }
     }
 
-    private static void customSearch () {
+    private static void customSearch() {
 
     }
 
-    }
+}

@@ -475,9 +475,9 @@ public class Main {
 //    }
 
     private static void loadTransactions() {
-        try (BufferedReader reader = new BufferedReader(new FileReader("transactions.txt"))) {
+        try (BufferedReader bufreader = new BufferedReader(new FileReader("transactions.txt"))) {
             String line;
-            while ((line = reader.readLine()) != null) {
+            while ((line = bufreader.readLine()) != null) {
                 transactions.add(line);
             }
         } catch (IOException e) {

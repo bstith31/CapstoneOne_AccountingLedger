@@ -59,7 +59,32 @@ Accessing the Ledger menu offers a generalized scope of what a user may want to 
 It offers the option to print every transaction or print them out individually categorized by
 _deposit_ or _payment_. A user may also access a separate ***Reports Menu*** or return to the main menu.
 
-![img_4.png](img_4.png)
+![img_6.png](img_6.png)
+
+<detail>
+
+**<summary>Print Out All Transactions</summary>**
+
+![img_11.png](img_11.png)
+
+</detail>
+
+<detail>
+
+**<summary>Print Out Deposits</summary>**
+
+![img_12.png](img_12.png)
+
+</detail>
+
+<detail>
+
+**<summary>Print Out Payments</summary>**
+
+![img_13.png](img_13.png)
+
+</detail>
+
 
 ## Access Reports
 ___
@@ -69,5 +94,83 @@ are able to print out highly specific reports from one of five options depending
 may be wanting to see.
 
 ![img_5.png](img_5.png)
+
+<details>
+
+**<summary> Month to Date:</summary>**
+
+![img_7.png](img_7.png)
+
+</details>
+
+<details>
+
+**<summary> Previous Month:</summary>**
+
+![img_8.png](img_8.png)
+
+
+</details>
+
+<details>
+
+**<summary> Year to Date:</summary>**
+
+![img_9.png](img_9.png)
+
+
+</details>
+
+<details>
+
+**<summary> Previous Year:</summary>**
+
+![img_10.png](img_10.png)
+
+
+</details>
+
+<details>
+
+**<summary> Custom Search:</summary>**
+
+For ___Custom Search___ the user can filter along each of the following options:
+1. Minimum Price
+2. Maximum Price
+3. Start Date
+4. End Date
+5. Description
+6. Vendor
+
+![img_14.png](img_14.png)
+
+![img_15.png](img_15.png)
+
+
+</details>
+
+## Error Handling
+
+Inputting an invalid option on any of the screens will display an invalid choice message
+and will re-prompt the user to input a valid option:
+
+![img_16.png](img_16.png)
+
+Inputting an incorrect monetary value for a deposit or payment will reset the process,
+ensuring it is logged correctly:
+
+![img_17.png](img_17.png)
+
+## Interesting Piece of Code
+
+The Temporal Adjuster class was used for to generate these particular ranges for the reports.
+Given that it is specifically made for date adjustments it was useful in calculating the specific
+dates required.
+
+![img_18.png](img_18.png)
+
+
+
+
 
 

@@ -4,6 +4,7 @@ import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -19,9 +20,9 @@ public class Main {
 
         System.out.print
                 ("""
-                        =============================================================================================================
-                        ======================================Brian's Accounting Ledger==============================================
-                        ===========================Why track your finances when I can do it for you==================================
+                        ==============================================================================================================
+                        ========================================Brian's Accounting Ledger=============================================
+                        ==============================Why track your finances when I can do it for you================================
                                          
                         Welcome!!! Thank you for taking the time to use Brian's Accounting Ledger as your first choice!
                         Please enter some of the following information to begin tracking your ongoing financial transactions!
@@ -32,6 +33,7 @@ public class Main {
 
         System.out.println
                 ("______________________________________________________________________________________________________________\n");
+
         System.out.print
                 ("Hello!! " + name + ", What is your purpose for using us today, please state your intended purpose for today. \n" +
                         "Is it for (B) Business or is it for (P) Personal, please press the corresponding letter to begin:\s");
@@ -39,6 +41,7 @@ public class Main {
         String serviceChoice = scanner.next().toUpperCase();
         System.out.println
                 ("\n______________________________________________________________________________________________________________\n");
+
         scanner.nextLine();
 //        boolean validInput;
 //        do {
@@ -83,7 +86,7 @@ public class Main {
                             //exit
                             break;
                         default:
-                            System.out.println("Invalid input");
+                            System.out.println("Invalid choice. Please select again");
 //                               validInput = false;
                             break;
                     }
@@ -123,10 +126,10 @@ public class Main {
                             break;
                         case 4:
                             System.out.println("4");
-                            System.out.println("Exiting the program");
-                            break;
+                            System.out.println("Exiting the program...");
+                            return;
                         default:
-                            System.out.println("Invalid input");
+                            System.out.println("\nInvalid choice. Please select again\n");
 //                            validInput = false;
                             break;
                     }
@@ -147,7 +150,7 @@ public class Main {
         try (BufferedWriter bufwriter = new BufferedWriter(new FileWriter("transactions.txt", true))) {
             boolean addAnotherTransaction = true;
             do {
-                System.out.println("\n====================================Welcome to Deposits============================================\n");
+                System.out.println("\n============================================Welcome to Deposits===============================================\n");
                 System.out.println("Please enter the following information to accurately log your deposit");
 
                 String dateTime;
@@ -203,7 +206,8 @@ public class Main {
                     bufwriter.flush(); // Flush to ensure data is written immediately
 
                     System.out.println("Your deposit has been successfully logged.");
-                    System.out.println("______________________________________________________________________________________________________________");
+                    System.out.println("\n_____________________________________________________________________________________________________________\n");
+
                 } while (!validInput); // Repeat the loop if input is invalid
 
                 System.out.print("Do you want to add another deposit? (Y/N): ");
@@ -221,7 +225,7 @@ public class Main {
         try (BufferedWriter bufwriter = new BufferedWriter(new FileWriter("transactions.txt", true))) {
             boolean addAnotherTransaction = true;
             do {
-                System.out.println("\n====================================Welcome to Payments============================================\n");
+                System.out.println("\n============================================Welcome to Payments================================================\n");
                 System.out.println("Please enter the following information to accurately log your payment");
 
                 String dateTime;
@@ -276,7 +280,7 @@ public class Main {
                     bufwriter.flush();
 
                     System.out.println("Your payment has been successfully logged.");
-                    System.out.println("______________________________________________________________________________________________________________");
+                    System.out.println("\n______________________________________________________________________________________________________________\n");
                 } while (!validInput); // Repeat the loop if input is invalid
 
                 System.out.print("Do you want to add another payment? (Y/N): ");
@@ -293,25 +297,27 @@ public class Main {
         System.out.print("Do you want to return to the main menu? (Y/N): ");
         String returnToMenu = scanner.nextLine().toUpperCase();
         return returnToMenu.equals("Y");
+
     }
 
     private static void ledgerMenu() {
 
         int ledgerChoice;
+        boolean returnToMain = false;
 
         do {
 
-            System.out.println("\n======================================Welcome to your Ledger==============================================\n");
+            System.out.println("\n=========================================Welcome to your Ledger===============================================\n");
             System.out.println("Use the options below to access any reports you may want to see       ");
             System.out.print("""
                                         
-                    1. Print out all.
-                    2. Print out deposits.
-                    3. Print out payments
+                    1. Display All
+                    2. Display All Deposits
+                    3. Display All Payments
                     4. Access Reports
                     5. Return to Main Menu
                                         
-                    ______________________________________________________________________________________________________________
+                    ______________________________________________________________________________________________________________\n
                     """);
             System.out.print("Are there any specific things you want to view? Enter a choice: ");
 
@@ -319,24 +325,25 @@ public class Main {
 
             switch (ledgerChoice) {
                 case 1:
-                    System.out.println("\nWill display all transactions\n");
+                    System.out.println("\nDisplaying All Transactions:\n");
                     displayAllTransactions();
                     break;
                 case 2:
-                    System.out.println("\nWill display all deposits\n");
+                    System.out.println("\nDisplaying All Deposits\n");
                     displayAllDeposits();
                     break;
                 case 3:
-                    System.out.println("\nWill display all payments\n");
+                    System.out.println("\nDisplaying All Payments\n");
                     displayAllPayments();
                     break;
                 case 4:
-                    System.out.println("\nWill access the reports menu\n");
+                    System.out.println("\nAccessing the Reports Menu\n");
                     reportsMenu();
                     break;
                 case 5:
-                    System.out.println("returning");
-                    // returnToMainMenu();
+                    System.out.println("Confirm you wish to return to the main menu");
+                    scanner.nextLine();
+                    returnToMainMenu();
                     break;
                 default:
                     System.out.println("\nInvalid choice. Please select again\n");
@@ -351,7 +358,7 @@ public class Main {
 
         do {
 
-            System.out.println("\n======================================Welcome to your Reports==============================================\n");
+            System.out.println("\n=========================================Welcome to your Reports=============================================\n");
             System.out.println("Use the options below to access any reports you may want to see       ");
             System.out.print("""
                                         
@@ -361,7 +368,7 @@ public class Main {
                     4. Previous Year:
                     5. Custom Search:
                     6. Return to Ledger Menu
-                                        
+                                
                     ______________________________________________________________________________________________________________
                     """);
             System.out.print("Which report would you like to view? Enter a choice from the following: ");
@@ -388,10 +395,10 @@ public class Main {
                     break;
                 case 5:
                     System.out.println("\nCustom search:\n");
+                    customSearch();
                     break;
                 case 6:
-                    ledgerMenu();
-                    break;
+                    return;
                 default:
                     System.out.println("\nInvalid choice. Please select again\n");
                     break;
@@ -402,7 +409,7 @@ public class Main {
 
     private static void displayAllTransactions() {
         try (BufferedReader bufreader = new BufferedReader(new FileReader("transactions.txt"))) {
-            System.out.println("\n=====================Start of all the logged transactions===========================\n");
+            System.out.println("\n===================================Start of all the logged transactions=======================================\n");
 
             String line;
             bufreader.readLine();
@@ -410,7 +417,7 @@ public class Main {
                 System.out.println(line);
             }
 
-            System.out.println("\n_______________________End of all the logged transactions____________________________");
+            System.out.println("\n_____________________________________End of all the logged transactions_______________________________________");
         } catch (IOException e) {
             System.out.println("Error reading transactions file: " + e.getMessage());
         }
@@ -419,7 +426,7 @@ public class Main {
 
     private static void displayAllDeposits() {
         try (BufferedReader bufreader = new BufferedReader(new FileReader("transactions.txt"))) {
-            System.out.println("\n=====================Start of all your deposits===========================\n");
+            System.out.println("\n=======================================Start of all your deposits============================================\n");
 
             String line;
             bufreader.readLine();
@@ -428,8 +435,8 @@ public class Main {
                 String[] parts = line.split("\\|");
                 if (parts.length >= 5) {
                     try {
-                        double amount = Double.parseDouble(parts[4]);
-                        if ((amount > 0)) {
+                        double price = Double.parseDouble(parts[4]);
+                        if ((price > 0)) {
                             System.out.println(line);
                         }
                     } catch (NumberFormatException e) {
@@ -437,7 +444,7 @@ public class Main {
                     }
                 }
             }
-            System.out.println("\n__________________________End of all your deposits______________________________");
+            System.out.println("\n_______________________________________End of all your deposits_____________________________________________");
         } catch (IOException e) {
             System.out.println("Error reading transactions file: " + e.getMessage());
         }
@@ -445,7 +452,7 @@ public class Main {
 
     private static void displayAllPayments() {
         try (BufferedReader bufreader = new BufferedReader(new FileReader("transactions.txt"))) {
-            System.out.println("\n=====================Start of all your payments===========================\n");
+            System.out.println("\n=======================================Start of all your payments============================================\n");
 
             String line;
             bufreader.readLine();
@@ -454,8 +461,8 @@ public class Main {
                 String[] parts = line.split("\\|");
                 if (parts.length >= 5) {
                     try {
-                        double amount = Double.parseDouble(parts[4]);
-                        if ((amount < 0)) {
+                        double price = Double.parseDouble(parts[4]);
+                        if ((price < 0)) {
                             System.out.println(line);
                         }
                     } catch (NumberFormatException e) {
@@ -463,7 +470,7 @@ public class Main {
                     }
                 }
             }
-            System.out.println("\n____________________________End of all your payments_______________________________");
+            System.out.println("\n_______________________________________End of all your payments______________________________________________");
         } catch (IOException e) {
             System.out.println("Error reading transactions file: " + e.getMessage());
         }
@@ -472,11 +479,44 @@ public class Main {
     private static void loadTransactions() {
         try (BufferedReader bufreader = new BufferedReader(new FileReader("transactions.txt"))) {
             String line;
+            bufreader.readLine();
             while ((line = bufreader.readLine()) != null) {
                 transactions.add(line);
             }
         } catch (IOException e) {
             System.out.println("Error loading inventory: " + e.getMessage());
+        }
+    }
+
+    /*
+    Displaying transactions:
+    The following four static methods are utilized to display all the transactions. Utilizing BufferedReader I read
+    from the file to acquire the dates of the transactions. displayTransactionsMethod is the primary method and the
+    subsequent methods are devised using LocalDate and TemporalAdjusters which was researched on Oracle.
+     */
+    private static void displayTransactionsMethod(LocalDate startDate, LocalDate endDate) {
+        try (BufferedReader bufreader = new BufferedReader(new FileReader("transactions.txt"))) {
+            System.out.println("\n==============================================Transactions====================================================\n");
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            String line;
+            bufreader.readLine();
+            while ((line = bufreader.readLine()) != null) {
+                String[] parts = line.split("\\|");
+                if (parts.length >= 1) {
+                    try {
+                        LocalDate transactionDate = LocalDate.parse(parts[0], formatter);
+                        if (!transactionDate.isBefore(startDate) && !transactionDate.isAfter(endDate)) {
+                            System.out.println(line);
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Error parsing date in line: " + line);
+                    }
+                }
+            }
+            System.out.println("\n__________________________________________End of Transactions________________________________________________");
+        } catch (IOException e) {
+            System.out.println("Error reading transactions file: " + e.getMessage());
         }
     }
 
@@ -506,33 +546,95 @@ public class Main {
         displayTransactionsMethod(firstDayOfPreviousYear, lastDayOfPreviousYear);
     }
 
-    private static void displayTransactionsMethod(LocalDate startDate, LocalDate endDate) {
-        try (BufferedReader bufreader = new BufferedReader(new FileReader("transactions.txt"))) {
-            System.out.println("\n=====================Transactions===========================\n");
 
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    /*
+    Custom Search:
+    Implements BufferedReader to search through transactions.txt to pull matching criteria for implemented data.
+    My version requires a minimum and maximum value, left this in since it may be necessary to have a range of prices,
+    over a given time period. All other fields are not required.
+     */
+    private static void customSearch() {
+
+        try (BufferedReader bufreader = new BufferedReader(new FileReader("transactions.txt"))) {
+            System.out.println("\n================================================Custom Search=================================================\n");
+            System.out.println("Please enter the search criteria:");
+
+            System.out.print("Minimum Price (leave blank for any): ");
+            String minPriceInput = scanner.nextLine().trim();
+            double minPrice;
+            if (minPriceInput.isEmpty()) {
+                minPrice = 0;
+            } else {
+                minPrice = scanner.nextDouble();
+            }
+            scanner.nextLine();
+
+            System.out.print("Maximum Price (leave blank for any): ");
+            String maxPriceInput = scanner.nextLine().trim();
+            double maxPrice;
+            if (maxPriceInput.isEmpty()) {
+                maxPrice = Double.POSITIVE_INFINITY;
+            } else {
+                maxPrice = Double.parseDouble(maxPriceInput);
+            }
+
+
+            LocalDate startDate = null;
+            System.out.print("Start Date (yyyy-MM-dd) (leave blank for any): ");
+            String startDateInput = scanner.nextLine().trim();
+            if (!startDateInput.isEmpty()) {
+                startDate = LocalDate.parse(startDateInput);
+            }
+
+            LocalDate endDate = null;
+            System.out.print("End Date (yyyy-MM-dd) (leave blank for any): ");
+            String endDateInput = scanner.nextLine().trim();
+            if (!endDateInput.isEmpty()) {
+                endDate = LocalDate.parse(endDateInput);
+            }
+
+            String description = "";
+            System.out.print("Description (leave blank for any): ");
+            String descriptionInput = scanner.nextLine().trim();
+            if (!descriptionInput.isEmpty()) {
+                description = descriptionInput.toLowerCase();
+            }
+
+            String vendor = "";
+            System.out.print("Vendor (leave blank for any): ");
+            String vendorInput = scanner.nextLine().trim();
+            if (!vendorInput.isEmpty()) {
+                vendor = vendorInput.toLowerCase();
+            }
+
+            System.out.println("\n============================================Filtered Transactions============================================\n");
+
             String line;
+            bufreader.readLine();
             while ((line = bufreader.readLine()) != null) {
                 String[] parts = line.split("\\|");
-                if (parts.length >= 1) {
-                    try {
-                        LocalDate transactionDate = LocalDate.parse(parts[0], formatter);
-                        if (!transactionDate.isBefore(startDate) && !transactionDate.isAfter(endDate)) {
-                            System.out.println(line);
-                        }
-                    } catch (Exception e) {
-                        System.out.println("Error parsing date in line: " + line);
+                if (parts.length >= 5) {
+                    LocalDate transactionDate = LocalDate.parse(parts[0]);
+                    String transactionDescription = parts[2].toLowerCase();
+                    String transactionVendor = parts[3].toLowerCase();
+                    double transactionPrice = Double.parseDouble(parts[4]);
+
+                    if ((startDate == null || transactionDate.isEqual(startDate) || transactionDate.isAfter(startDate)) &&
+                            (endDate == null || transactionDate.isEqual(endDate) || transactionDate.isBefore(endDate)) &&
+                            (description.isEmpty() || transactionDescription.toLowerCase().contains(description.toLowerCase())) &&
+                            (vendor.isEmpty() || transactionVendor.toLowerCase().contains(vendor.toLowerCase())) &&
+                            (transactionPrice >= minPrice && transactionPrice <= maxPrice)) {
+                        System.out.println(line);
                     }
                 }
             }
-            System.out.println("\n___________________________________End of Transactions____________________________");
+            System.out.println("\n______________________________________End of your filtered transactions_____________________________________\n");
         } catch (IOException e) {
             System.out.println("Error reading transactions file: " + e.getMessage());
+        } catch (DateTimeParseException | NumberFormatException e) {
+            System.out.println("Error parsing transaction data: " + e.getMessage());
         }
     }
-
-    private static void customSearch() {
-
-    }
-
 }
+
+

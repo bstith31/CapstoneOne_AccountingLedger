@@ -1,33 +1,19 @@
 date|time|description|vendor|amount
 2023-04-15|10:13:25|ergonomic keyboard|Amazon|-89.50
 2023-04-15|11:15:00|Invoice 1001 paid|Joe|1500.00
-2023-03-31|12:00:00|Random Charity|Mom|250.00
-2022-05-16|20:30:00|Someone's Birthday|Myself|-300.00
-2022-12-25|18:30:00|Christmas Presents|Myself|-1200.00
 2024-04-30|09:43:00|Monstera Plant|Greg|-39.99
 2024-04-30|15:43:00|HeartLeaf Plant|Greg|-19.99
-2021-01-01|00:20:00|Something|Someone|-100.00
-1|Error Handling|Brian|Time Error|-404.00
-2024-05-01|20:06:21|Safety|Me|-400.00
-
-2024-05-02 01:14:33|Something|Someone|200.00
-2024-05-02 01:18:41|Something|Someone|30.00
-1997-05-20 12:00:00|Old Thing|Old One|300.00
-2024-05-02|01:42:44|Something|Someoen|-200.00
-2024-05-02|01:43:35|Something|Someone|-200.00
-2024-05-02 01:44:30|Something|Someone|200.00
-2024-05-02|01:50:15|Something|Someone|200.00
-2024-05-02|01:50:15|Something|Someone|2000.00
-2024-05-02|01:50:15|Something|Someone|30000.00
-
-2024-05-02|09:46:34|Something|Someone|2000.00
-
-2024-05-02|10:38:40|Something|Someone|150.00
-
-2024-02-24|12:00:00|Something|Someone|-15.00
-2024-05-02|11:17:18|Something|Someone|400.00
-
-2024-05-02|11:17:43|Something|Someone|-20.00
+2024-04-30|18:46:34|Something|Someone|2000.00
+2024-04-30|20:38:40|Something|Someone|150.00
+2024-05-01|01:42:44|Something|Someoen|-200.00
+2024-05-01|01:43:35|Something|Someone|-200.00
+2024-05-01|11:17:18|Something|Someone|400.00
+2024-05-01|11:17:43|Something|Someone|-20.00
+2024-05-01|11:17:43|Another Plant Probably|Greg|-20.00
+2024-05-01|12:00:00|Hibba Decided my Lunch|Brian|-24.00
+2024-05-01|20:06:21|Clothing|Brian|-400.00
 2024-05-02|11:51:22|Test|Tester|1000.00
-
 2024-05-02|11:51:45|Test|Tester|-500.00
+2024-05-02|21:05:39|Something|Someone|200.00
+2024-05-03|01:00:00|New Mets Jersey|Brian|-180.00
+2024-05-03|8:00:00|Random Charity|Mom|250.00

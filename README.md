@@ -68,29 +68,29 @@ _deposit_ or _payment_. A user may also access a separate ***Reports Menu*** or 
 
 ![img_6.png](src/main/resources/img_6.png)
 
-<detail>
+<details>
 
 **<summary>Print Out All Transactions</summary>**
 
 ![img_11.png](src/main/resources/img_11.png)
 
-</detail>
+</details>
 
-<detail>
+<details>
 
 **<summary>Print Out Deposits</summary>**
 
 ![img_12.png](src/main/resources/img_12.png)
 
-</detail>
+</details>
 
-<detail>
+<details>
 
 **<summary>Print Out Payments</summary>**
 
 ![img_13.png](src/main/resources/img_13.png)
 
-</detail>
+</details>
 
 
 ## Access Reports

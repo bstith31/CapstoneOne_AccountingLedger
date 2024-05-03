@@ -169,6 +169,12 @@ ensuring it is logged correctly:
 
 ![img_17.png](src/main/resources/img_17.png)
 
+Given files are being read, something I included when creating reports from reading files was
+to have an error message display if there was indeed some parsing error. With the scope of this
+application, this would allow user to correct the file themselves as well.
+
+![img.png](src/main/resources/img_19.png)
+
 ## Interesting Piece of Code
 
 

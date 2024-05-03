@@ -16,4 +16,10 @@ date|time|description|vendor|amount
 2024-05-02|11:51:45|Test|Tester|-500.00
 2024-05-02|21:05:39|Something|Someone|200.00
 2024-05-03|01:00:00|New Mets Jersey|Brian|-180.00
-2024-05-03|8:00:00|Random Charity|Mom|250.00
+2024-05-03|8:00:00|Random Charity|Mom|250.002024-05-03|08:56:18|Something|Someone|500.00
+2024-05-03|08:56:41|Test|Tester|300.00
+2024-05-03|09:02:48|PresentationDay|TestOne|400.00
+2024-05-03 09:03:48|PresentationDay|TestTwo|400.00
+2024-05-03|09:15:11|Presentation Day|TestThree|-100.00
+2024-05-03|10:13:43|Something|Someone|200.00
+

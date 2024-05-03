@@ -11,13 +11,24 @@ import java.util.Scanner;
 
 public class Main {
 
+    /*
+    Publicly declaring Scanner and Array List to eliminate the need to pass arguments to them. Simplifies the process
+    when dealing with the multiple inputs that I am going to need to take. Looking back at this now considering the
+    extensive use of BufferedReader and BufferedWriter I went with, both could have been declared as well.
+     */
     public static Scanner scanner = new Scanner(System.in);
     public static ArrayList<String> transactions = new ArrayList<String>();
 
     public static void main(String[] args) {
 
+        //Loads transaction from the very start so that any that are already pre-inputted into the file we'll be reading from.
         loadTransactions();
 
+        /*
+        A welcome screen and message that allows for a user to input their names. It allows for a more welcoming screen, and
+        for the experience to be more personable. This is something I want to improve upon in the future and to work more with
+        the idea of splitting transaction between created and written to.
+         */
         System.out.print
                 ("""
                         ==============================================================================================================
@@ -50,6 +61,7 @@ public class Main {
 //            scanner.nextLine();
 
         switch (serviceChoice) {
+            //Business-side Ledger
             case "B":
                 do {
                     System.out.println
@@ -93,6 +105,7 @@ public class Main {
                 } while (true);
 //                    validInput = true;
 //                    break;
+            //Personal-side Ledger
             case "P":
                 do {
                     System.out.println
@@ -145,6 +158,11 @@ public class Main {
 //        } while (!validInput);
     }
 
+    /*
+    Adding Deposits and Making Payments: When an input is placed it these two methods which are redundant for simplicity’s sake process
+    information in the same way and write to the file. A future optimization would be to allow for the user to designate which they want
+    to use and place it all in one method or better a separate class to call from.
+     */
     public static void makeDeposit() {
 
         try (BufferedWriter bufwriter = new BufferedWriter(new FileWriter("transactions.txt", true))) {
@@ -293,13 +311,19 @@ public class Main {
         }
     }
 
+    //A method for confirmation that the user wanted to return to the Home Screen since they had to traverse to screen.
+    //This was also used as a way to check an error I was experiencing of an input being eaten when accessing reports
+    //and then trying to get back to the Home Screen. This helped me realize that was happening.
     private static boolean returnToMainMenu() {
         System.out.print("Do you want to return to the main menu? (Y/N): ");
         String returnToMenu = scanner.nextLine().toUpperCase();
         return returnToMenu.equals("Y");
 
     }
-
+    /* Ledger and Report Menu: Menus designed to manage all the functionality and display of both. Simplified the process of
+    tracking what I was doing but also would work better to separate into a separate class that would hold all of this. As
+    it is right now it is messy but something that will be worked on more.
+     */
     private static void ledgerMenu() {
 
         int ledgerChoice;
@@ -407,6 +431,10 @@ public class Main {
         } while (reportsChoice != 6);
     }
 
+    /*
+    Display Methods: Reading from transactions.txt and splitting the results, given the scope of this project and the fact that a file was always going
+    to be created or present, I wanted to focus on using that data to build my  application around.
+    */
     private static void displayAllTransactions() {
         try (BufferedReader bufreader = new BufferedReader(new FileReader("transactions.txt"))) {
             System.out.println("\n===================================Start of all the logged transactions=======================================\n");
@@ -551,7 +579,8 @@ public class Main {
     Custom Search:
     Implements BufferedReader to search through transactions.txt to pull matching criteria for implemented data.
     My version requires a minimum and maximum value, left this in since it may be necessary to have a range of prices,
-    over a given time period. All other fields are not required.
+    over a given time period. All other fields are not required. Hard coded to include variations due to issues I had where
+    I could search for anything properly except for Description and Vendor.
      */
     private static void customSearch() {
 

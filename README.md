@@ -1,14 +1,21 @@
 # Capstone One - Accounting Ledger
 
+The scope of this application is to allow users to both add and view various transactions
+that they have partaking in on any given day. The application allows users to add deposits
+and payments either at the time they are being input or any given day the user may want. It
+also allows for view all transactions logged or even separated out into just deposits and payments.
+User also have an option to generate reports over a given time period or filter them via specific
+search criteria. Each transaction itself is saved to a file named transactions.txt.
+
 ## Application Greeting and Welcome Screen
-___
+
 Upon entering the application, the user is requested to input a name and whether they are using
 the application for business or personal transactions. 
 
 ![img.png](src/main/resources/img.png)
 
 ## Main Menu
-___
+
 The main menu allows to the user to choose from the four options of the application.
 In this portion ***Add Deposit*** and ***Make a Payment*** will be covered, as the
 ledger has more detail that will be covered in its own section.
@@ -54,7 +61,7 @@ If not they will be returned to the main menu
 </details>
 
 ## Ledger
-___
+
 Accessing the Ledger menu offers a generalized scope of what a user may want to see.
 It offers the option to print every transaction or print them out individually categorized by
 _deposit_ or _payment_. A user may also access a separate ***Reports Menu*** or return to the main menu.
@@ -87,7 +94,7 @@ _deposit_ or _payment_. A user may also access a separate ***Reports Menu*** or 
 
 
 ## Access Reports
-___
+
 
 Accessing the Reports menu offers user further control over what they want to see. Here they
 are able to print out highly specific reports from one of five options depending on what they
@@ -151,6 +158,7 @@ For ___Custom Search___ the user can filter along each of the following options:
 
 ## Error Handling
 
+
 Inputting an invalid option on any of the screens will display an invalid choice message
 and will re-prompt the user to input a valid option:
 
@@ -163,7 +171,8 @@ ensuring it is logged correctly:
 
 ## Interesting Piece of Code
 
-The Temporal Adjuster class was used for to generate these particular ranges for the reports.
+
+The **Temporal Adjuster** class was used for to generate these particular ranges for the reports.
 Given that it is specifically made for date adjustments it was useful in calculating the specific
 dates required.
 
